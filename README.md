@@ -24,3 +24,5 @@ The visualization for this data is located in the Graph tab. Each dot/rectangle 
        
        
 I hope this makes grading the challenge more enjoyable than reading a PDF and the visualization makes the data more accessible/approachable.  Thank you for your time :) 
+
+permalink: /index.html
