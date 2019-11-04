@@ -5,7 +5,7 @@ I believe data visualizations are incredibly powerful. They have the ability to 
 The visualization for this data is located in the Graph tab. Each dot/rectangle represents an encounter between 2008 and 2016. The way the data is presented here ensures that encounters and patient experiences are not reduced to a single number or clumped into a bar where it's we might forget that data isn't just numbers - it is lived experiences too. Along with the graph is the rest of the assignment:
 
 ### TABS
-
+-------------
 **Data:**  Details the data that was provided (Q1)
 
 **Assumptions:** Reveals important assumptions made in the regressions
