@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Massachusetts Hospital Encounters (2008-2016)</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="../css/project-specific.css" rel="stylesheet" type="text/css">
+    <link href="../css/interactive_visualization.css" rel="stylesheet" type="text/css">
+
+    <!-- Scripts -->
+    <script src="../js/three.js" type="text/javascript"></script>
+    <script src="../js/Detector.js" type="text/javascript"></script>
+    <script src="../js/stats.min.js" type="text/javascript"></script>
+    <script src="../js/tween.min.js" type="text/javascript"></script>
+    <script src="../js/d3.js" type="text/javascript"></script>
+    <script src="https://d3js.org/d3-queue.v3.min.js" type="text/javascript"></script>
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Avenir:100,300,300i,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+
+    <!-- Google Analytics Code -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-27897156-6', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- ******* Navbar ******* -->
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" font="Lora">
+            <a class="navbar-brand" href="home.html"> <br>Massachusetts Hospital Encounters (2008-16)</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="real.html">Graph</a></li>
+                <li><a href="data.html">Data</a></li>
+                <li><a href="assumptions.html">Assumptions</a></li>
+                <li class="active"><a href="analysis.html">Analysis</a></li>
+                <li ><a href="program.html">Program Design</a></li>
+                <li><a href="../../MassHealth.zip" download> Code</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="section">
+    <div class="container container-narrow">
+        <h2><u>ANALYSIS</u></h2>
+            <h3 style="text-align: center"><u>OLS</u></h3>
+        <p> The initial regression:
+<br><br>
+            <img src="../../images/1.jpg" alt="Regression 1" height="50%" width="50%">
+<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;When income is involved, log(income) is best for regressions since it results in a more
+            normal distribution and for income percentage increases matter much more than unit increases. In order to
+            include race in the regression, there had to be binary variables for each of the races, however only 3 are
+            needed due to the collinearity of race. This regression claims that for every 1% of income growth, the probability
+            of death decreases by 5.2%, and if we are working at the 10% level, being Asian increases the probability of
+            mortality by 7.4%. The other two coefficients are not statistically significant.
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;The relationship we are interested in is between mortality after emergency visits and
+            income and race, however this regression is hard to believe. The dependent value in this regression is independent
+            of time between emergency visit and death and maintains that a patient who passed away 5 years after their visit
+            is still somehow affect by post-discharge mortality. As a result, I created 4 other variables: yearDeath,
+            death100, death60, and death30 representing deaths that occurred within one year, 100 days, 60 days, and 30
+            days of their emergency visit to try and find a more sound regression.
+            <br>
+        </p>
+        <div class="row">
+            <div class="column">
+                <img src="../../images/2.jpg" alt="Regression 2"  height="90%" width="90%">
+            </div>
+            <div class="column">
+                <img src="../../images/3.jpg" alt="Regression 3" height="90%" width="90%">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <img src="../../images/4.jpg" alt="Regression 4"  height="90%" width="90%">
+            </div>
+            <div class="column">
+                <img src="../../images/5.jpg" alt="Regression 5" height="90%" width="90%">
+            </div>
+
+        </div>
+<p>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;Unsurprisingly, the significance of the other two variables did not increase. As the amount
+    of days decreases, it constrains the available 1’s to learn relationships from. By Death30, there are only 4 out of
+    989 observations where the dependent value is 1. As a result, patterns are harder to find, leaving the regression to
+    assume that these characteristics have no effect. However, the coefficients for asian and log(income) remained
+    significant in its relationship with 1-year post-discharge mortality. According to this regression, an Asian patient
+    who is making the average income of the dataset (81,081.73) and is there for an emergency visit is 25% likely to pass
+    away within 1 year. (Which logically seems much too high)
+
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;What is surprising is that these are not the results I expected. I expected post-discharge
+    mortality and income and race to have a statistically significant relationship and patients who were low income
+    minorities, not just Asians to be at higher risk of post-discharge mortality. Here, a larger income has a more
+    negative effect on mortality, so as the median household income increases, mortality increases along with it.
+    However, these regressions do not tell the whole story and before I can start to accept these numbers, I would
+    like to find a way to run a regression with more accurate income data. Additionally, I have questions about being
+    able to extrapolate patterns from this data set to Massachusetts due to the patient demographics. 74% of patients
+    in this dataset were hispanic  and only 11% were white. Comparatively, according to the 2017 ACS, the demographic
+    of Massachusetts is completely flipped with, 78.92% of the population white and only 11.2% Hispanic/Latino. Because
+    this data is not anywhere near representative of Massachusetts, I am not completely convinced that these numbers are
+    representative of MA’s health care.
+
+</p>
+        <h3 style="text-align: center"><u>LOGISTIC REGRESSION</u></h3>
+        <div class="row">
+            <div class="column">
+                <img src="../../images/6.jpg" alt="Regression 6"  height="90%" width="90%">
+            </div>
+            <div class="column">
+                <img src="../../images/61.jpg" alt="Regression 6.1" height="90%" width="90%">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <img src="../../images/62.jpg" alt="Regression 6.2"  height="90%" width="90%">
+            </div>
+
+        </div>
+
+       <p>    &nbsp;&nbsp;&nbsp;&nbsp;The first issue that comes to mind when running a logistic regression on this data is the uneven split. 2.02%
+           of the entire dataset is a 1 for the dependent variable while the remaining 97.98% is all 0’s. Despite this,
+           the logistic regression does surprisingly well. With chi squared values all smaller than 5%, we can see that
+           income and race affect the log odds of post-discharge mortality.
+           <br><br>
+           In the second regression, minority is omitted since it perfectly predicts failure if it is 0. In other words,
+           nearly all (19/20) 1-year post discharge mortalities were minorities and it therefore should not be in the
+           regression. Similarly, 0 black patients and 1 white patient make up the 1-year post discharge mortality population
+           and must also be removed from the regression. The fact that we are removing so many variables acts as a warning
+           that we might not have enough information - specifically for each subset. In other words, there are not enough
+           non-Hispanic encounters to make an accurate prediction. But if we were to accept this regression, we can
+           expect every 1% increase in income to decrease the log odds of 1-year post discharge mortality by -1.4
+           (holding everything constant) and being asian to increase the log odds by 1.3 (holding everything constant).
+       </p>
+        <h2><u>OBSERVATIONS</u></h2>
+        <div class="row">
+            <div class="column">
+                <img src="../../images/7.jpg" alt="Regression 7"  height="90%" width="90%">
+            </div>
+            <div class="column">
+                <img src="../../images/8.jpg" alt="Regression 8" height="90%" width="90%">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <img src="../../images/9.jpg" alt="Regression 9"  height="90%" width="90%">
+            </div>
+
+            <ul>
+                <li> Age is an additional feature we should regress on as it is statistically significant past the 5% level in both cases (age and senior).</li>
+                <br>
+                <li>   Asian’s have the highest post-discharge 1 year mortality rate: 6.5%</li>
+                <br>
+                <li>   100% of patients who passed away within 30 days of being discharged were seniors (based off of my definition of emergency visit)</li>
+                <br>
+                <li>    6.2% of patients are Asian, however Asians make up 20% of patients who pass away within 1 year of being discharged</li>
+                <br>
+                <li> Comparatively, 8.7% of patients are Black and they make up 0% of the same group</li>
+                <br>                <br>
+                <li> Average asian income: $77,316.23, Average white income: $84,141.88, Average hispanic income: $79,508.17, Average Black income: $96,254.40</li>
+                <br>
+                <li> It’s statistics like these and the two datapoints above that make data and technology based impact so dangerous! It might seem like more aid and attention should be focused on Asians, but on the flipside of increased aid for one group is either decreased aid or dismissal of another. And it’s highly likely that this data is biased since data is produced by a biased society.</li>
+                <br>
+                <li> 46% of senior patients who passed away within 30 days of their hospital visit had visited the hospital for a flu shot. Or they at least got a flu shot the same day, but it is highly likely that is what their “Outpatient Encounter” was.</li>
+                <br>
+                <li> An additional 39% of senior patients passed away w/in 30 days of their visit passed away due to Pneumonia/Viral Illness.</li>
+                <br>
+                <li> Average Household Income for patients recorded as homeless: $76,309.20</li>
+                <br>
+                <li> Visiting for flu shots, viral infections/illnesses, and injuries from falling were the top 3 last visits for senior patients who passed away within a year. (not including unpreventable cases such as cancer and Alzheimers)</li>
+
+            </ul>
+
+
+
+    </div>
+</div>
+

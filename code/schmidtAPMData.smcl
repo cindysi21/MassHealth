@@ -1,0 +1,684 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/afs/athena.mit.edu/user/c/i/cindysi/schmidtAPMData.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 4 Nov 2019, 03:29:32
+
+{com}. ls
+
+{res}total 5843
+-rw-r--r--  1 cindysi nogroup               0 Sep 25 14:13 1432_log_1.smcl
+drwxr-xr-x  2 cindysi root               2048 Nov  1 23:47 Desktop/
+drwxr-xr-x  3 cindysi nogroup            2048 Nov  1 23:20 Documents/
+drwxr-xr-x  2 cindysi nogroup            2048 Oct 31 13:31 Downloads/
+-rw-r--r--  1 cindysi nogroup          162071 Sep 25 14:12 Earnings_and_Height.dta
+-rw-r--r--  1 cindysi nogroup          182002 Oct  6 20:59 Earnings_and_Height_v2.dta
+-rw-r--r--  1 cindysi nogroup          252803 Nov  4 03:27 EmergencyVisits.csv
+-rw-r--r--  1 cindysi nogroup         3423480 Nov  4 03:23 graph.csv
+-rw-r--r--  1 cindysi systemd-journal    4045 Oct 21 17:14 Growth.dta
+-rw-rw-rw-  1 cindysi root                812 May  2  2016 index.html
+drwx------  2 cindysi root               2048 May  2  2016 Mail/
+drwxr-xr-x  2 cindysi nogroup            2048 Aug 31  2016 Music/
+drwxr-xr-x 26 cindysi root               4096 Nov  2 00:04 OldFiles/
+drwxr-xr-x  2 cindysi nogroup            2048 Jan  7  2017 Pictures/
+drwx------  2 cindysi root               2048 May  2  2016 Private/
+drwxr-xr-x  2 cindysi root               2048 May  2  2016 Public/
+-rw-r--r--  1 cindysi nogroup             226 Nov  4 03:29 schmidtAPMData.smcl
+-rw-r--r--  1 cindysi nogroup             375 Nov  4 03:25 schmidtAPM.smcl
+-rw-r--r--  1 cindysi nogroup             455 Nov  4 03:29 schmidtchallenge.sml
+-rw-r--r--  1 cindysi nogroup           41038 Nov  1 15:51 SchmidtData.smcl
+-rw-r--r--  1 cindysi systemd-journal  101736 Oct 21 17:14 Smoking.dta
+drwxr-xr-x  2 cindysi nogroup            2048 Aug 31  2016 Templates/
+-rw-r--r--  1 cindysi nogroup         1778833 Jan  7  2017 Untitled 1.odt
+drwxr-xr-x  2 cindysi nogroup            2048 Aug 31  2016 Videos/
+-rw-rw-rw-  1 cindysi root               1819 May  2  2016 welcome
+drwxr-xr-x  2 cindysi root               2048 May  2  2016 www/
+
+{com}. insheet using"EmergencyVisits.csv"
+{txt}(34 vars, 989 obs)
+
+{com}. gen logincome = log(income)
+{txt}(267 missing values generated)
+
+{com}. regress death logincome black hispanic asian
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(4, 717)       = {res}     1.93
+{txt}       Model {c |} {res} .393803803         4  .098450951   {txt}Prob > F        ={res}    0.1030
+{txt}    Residual {c |} {res}  36.499548       717  .050905925   {txt}R-squared       ={res}    0.0107
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0052
+{txt}       Total {c |} {res} 36.8933518       721  .051169697   {txt}Root MSE        =   {res} .22562
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       death{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-.0515155{col 26}{space 2} .0245221{col 37}{space 1}   -2.10{col 46}{space 3}0.036{col 54}{space 4}-.0996592{col 67}{space 3}-.0033718
+{txt}{space 7}black {c |}{col 14}{res}{space 2} .0272523{col 26}{space 2} .0419427{col 37}{space 1}    0.65{col 46}{space 3}0.516{col 54}{space 4}-.0550929{col 67}{space 3} .1095975
+{txt}{space 4}hispanic {c |}{col 14}{res}{space 2} .0407031{col 26}{space 2} .0306463{col 37}{space 1}    1.33{col 46}{space 3}0.185{col 54}{space 4}-.0194642{col 67}{space 3} .1008704
+{txt}{space 7}asian {c |}{col 14}{res}{space 2} .0736877{col 26}{space 2} .0447823{col 37}{space 1}    1.65{col 46}{space 3}0.100{col 54}{space 4}-.0142324{col 67}{space 3} .1616078
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .5950457{col 26}{space 2} .2768531{col 37}{space 1}    2.15{col 46}{space 3}0.032{col 54}{space 4} .0515061{col 67}{space 3} 1.138585
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress death30 logincome black hispanic asian
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(4, 717)       = {res}     1.72
+{txt}       Model {c |} {res} .018990502         4  .004747625   {txt}Prob > F        ={res}    0.1430
+{txt}    Residual {c |} {res} 1.97546933       717  .002755187   {txt}R-squared       ={res}    0.0095
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0040
+{txt}       Total {c |} {res} 1.99445983       721  .002766241   {txt}Root MSE        =   {res} .05249
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     death30{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2} .0004964{col 26}{space 2} .0057049{col 37}{space 1}    0.09{col 46}{space 3}0.931{col 54}{space 4}-.0107039{col 67}{space 3} .0116968
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-.0000851{col 26}{space 2} .0097577{col 37}{space 1}   -0.01{col 46}{space 3}0.993{col 54}{space 4}-.0192422{col 67}{space 3}  .019072
+{txt}{space 4}hispanic {c |}{col 14}{res}{space 2} .0017794{col 26}{space 2} .0071297{col 37}{space 1}    0.25{col 46}{space 3}0.803{col 54}{space 4}-.0122182{col 67}{space 3} .0157769
+{txt}{space 7}asian {c |}{col 14}{res}{space 2} .0227326{col 26}{space 2} .0104183{col 37}{space 1}    2.18{col 46}{space 3}0.029{col 54}{space 4} .0022786{col 67}{space 3} .0431867
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.0055738{col 26}{space 2} .0644081{col 37}{space 1}   -0.09{col 46}{space 3}0.931{col 54}{space 4}-.1320249{col 67}{space 3} .1208773
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress death60 logincome black hispanic asian
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(4, 717)       = {res}     1.72
+{txt}       Model {c |} {res} .018990502         4  .004747625   {txt}Prob > F        ={res}    0.1430
+{txt}    Residual {c |} {res} 1.97546933       717  .002755187   {txt}R-squared       ={res}    0.0095
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0040
+{txt}       Total {c |} {res} 1.99445983       721  .002766241   {txt}Root MSE        =   {res} .05249
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     death60{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2} .0004964{col 26}{space 2} .0057049{col 37}{space 1}    0.09{col 46}{space 3}0.931{col 54}{space 4}-.0107039{col 67}{space 3} .0116968
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-.0000851{col 26}{space 2} .0097577{col 37}{space 1}   -0.01{col 46}{space 3}0.993{col 54}{space 4}-.0192422{col 67}{space 3}  .019072
+{txt}{space 4}hispanic {c |}{col 14}{res}{space 2} .0017794{col 26}{space 2} .0071297{col 37}{space 1}    0.25{col 46}{space 3}0.803{col 54}{space 4}-.0122182{col 67}{space 3} .0157769
+{txt}{space 7}asian {c |}{col 14}{res}{space 2} .0227326{col 26}{space 2} .0104183{col 37}{space 1}    2.18{col 46}{space 3}0.029{col 54}{space 4} .0022786{col 67}{space 3} .0431867
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.0055738{col 26}{space 2} .0644081{col 37}{space 1}   -0.09{col 46}{space 3}0.931{col 54}{space 4}-.1320249{col 67}{space 3} .1208773
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress death100 logincome black hispanic asian
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(4, 717)       = {res}     0.75
+{txt}       Model {c |} {res} .016660683         4  .004165171   {txt}Prob > F        ={res}    0.5556
+{txt}    Residual {c |} {res} 3.96117865       717  .005524656   {txt}R-squared       ={res}    0.0042
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}   -0.0014
+{txt}       Total {c |} {res} 3.97783934       721  .005517114   {txt}Root MSE        =   {res} .07433
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    death100{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-.0007784{col 26}{space 2} .0080784{col 37}{space 1}   -0.10{col 46}{space 3}0.923{col 54}{space 4}-.0166386{col 67}{space 3} .0150818
+{txt}{space 7}black {c |}{col 14}{res}{space 2} .0001334{col 26}{space 2} .0138174{col 37}{space 1}    0.01{col 46}{space 3}0.992{col 54}{space 4}-.0269939{col 67}{space 3} .0272608
+{txt}{space 4}hispanic {c |}{col 14}{res}{space 2} .0053526{col 26}{space 2} .0100959{col 37}{space 1}    0.53{col 46}{space 3}0.596{col 54}{space 4}-.0144686{col 67}{space 3} .0251737
+{txt}{space 7}asian {c |}{col 14}{res}{space 2} .0227189{col 26}{space 2} .0147528{col 37}{space 1}    1.54{col 46}{space 3}0.124{col 54}{space 4} -.006245{col 67}{space 3} .0516828
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0087394{col 26}{space 2} .0912048{col 37}{space 1}    0.10{col 46}{space 3}0.924{col 54}{space 4}-.1703211{col 67}{space 3} .1877998
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress yeardeath logincome black hispanic asian
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(4, 717)       = {res}     2.59
+{txt}       Model {c |} {res} .223149935         4  .055787484   {txt}Prob > F        ={res}    0.0355
+{txt}    Residual {c |} {res} 15.4222794       717  .021509455   {txt}R-squared       ={res}    0.0143
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0088
+{txt}       Total {c |} {res} 15.6454294       721  .021699625   {txt}Root MSE        =   {res} .14666
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-.0291488{col 26}{space 2}   .01594{col 37}{space 1}   -1.83{col 46}{space 3}0.068{col 54}{space 4}-.0604434{col 67}{space 3} .0021459
+{txt}{space 7}black {c |}{col 14}{res}{space 2}  .004997{col 26}{space 2} .0272638{col 37}{space 1}    0.18{col 46}{space 3}0.855{col 54}{space 4}-.0485295{col 67}{space 3} .0585235
+{txt}{space 4}hispanic {c |}{col 14}{res}{space 2} .0233589{col 26}{space 2} .0199209{col 37}{space 1}    1.17{col 46}{space 3}0.241{col 54}{space 4}-.0157514{col 67}{space 3} .0624692
+{txt}{space 7}asian {c |}{col 14}{res}{space 2} .0678679{col 26}{space 2} .0291096{col 37}{space 1}    2.33{col 46}{space 3}0.020{col 54}{space 4} .0107176{col 67}{space 3} .1250183
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .3272617{col 26}{space 2} .1799616{col 37}{space 1}    1.82{col 46}{space 3}0.069{col 54}{space 4} -.026053{col 67}{space 3} .6805764
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. sum death30
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}death30 {c |}{res}        989    .0040445    .0634997          0          1
+
+{com}. tab death30
+
+    {txt}DEATH30 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        985       99.60       99.60
+{txt}          1 {c |}{res}          4        0.40      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        989      100.00
+
+{com}. logit yeardeath logincome black hispanic asian
+
+{txt}note: black != 0 predicts failure perfectly
+      black dropped and 57 obs not used
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-75.441129}  
+Iteration 1:{space 3}log likelihood = {res:-72.886828}  
+Iteration 2:{space 3}log likelihood = {res:-70.952678}  
+Iteration 3:{space 3}log likelihood = {res:-70.804948}  
+Iteration 4:{space 3}log likelihood = {res:-70.780896}  
+Iteration 5:{space 3}log likelihood = {res:-70.775128}  
+Iteration 6:{space 3}log likelihood = {res:-70.773943}  
+Iteration 7:{space 3}log likelihood = {res:-70.773693}  
+Iteration 8:{space 3}log likelihood = {res:-70.773636}  
+Iteration 9:{space 3}log likelihood = {res:-70.773622}  
+Iteration 10:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 11:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 12:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 13:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 14:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 15:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 16:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 17:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 18:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 19:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 20:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 21:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 22:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 23:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 24:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 25:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 26:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 27:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 28:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 29:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 30:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 31:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 32:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 33:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 34:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 35:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 36:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 37:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 38:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 39:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 40:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 41:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 42:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 43:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 44:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 45:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 46:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 47:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 48:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 49:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 50:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 51:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 52:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 53:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 54:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 55:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 56:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 57:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 58:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 59:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 60:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 61:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 62:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 63:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 64:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 65:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 66:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 67:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 68:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 69:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 70:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 71:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 72:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 73:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 74:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 75:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 76:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 77:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 78:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 79:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 80:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 81:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 82:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 83:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 84:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 85:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 86:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 87:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 88:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 89:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 90:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 91:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 92:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 93:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 94:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 95:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 96:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 97:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 98:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 99:{space 2}log likelihood = {res:-70.773619}  (not concave)
+Iteration 100:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 101:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 102:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 103:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 104:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 105:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 106:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 107:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 108:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 109:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 110:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 111:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 112:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 113:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 114:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 115:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 116:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 117:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 118:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 119:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 120:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 121:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 122:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 123:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 124:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 125:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 126:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 127:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 128:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 129:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 130:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 131:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 132:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 133:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 134:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 135:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 136:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 137:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 138:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 139:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 140:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 141:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 142:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 143:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 144:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 145:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 146:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 147:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 148:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 149:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 150:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 151:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 152:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 153:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 154:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 155:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 156:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 157:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 158:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 159:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 160:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 161:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 162:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 163:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 164:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 165:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 166:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 167:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 168:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 169:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 170:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 171:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 172:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 173:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 174:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 175:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 176:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 177:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 178:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 179:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 180:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 181:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 182:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 183:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 184:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 185:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 186:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 187:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 188:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 189:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 190:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 191:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 192:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 193:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 194:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 195:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 196:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 197:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 198:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 199:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 200:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 201:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 202:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 203:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 204:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 205:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 206:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 207:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 208:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 209:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 210:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 211:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 212:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 213:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 214:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 215:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 216:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 217:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 218:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 219:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 220:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 221:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 222:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 223:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 224:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 225:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 226:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 227:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 228:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 229:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 230:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 231:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 232:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 233:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 234:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 235:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 236:{space 1}log likelihood = {res:-70.773619}  (not concave)
+Iteration 237:{space 1}log likelihood = {res:-70.773619}  (not concave)
+{res}{err}{hline 2}Break{hline 2}
+{txt}{search r(1), local:r(1);}
+
+{com}. log income black hispanic
+{err}income invalid
+{txt}{search r(198), local:r(198);}
+
+{com}. logit yeardeath logincome black hispanic
+
+{txt}note: black != 0 predicts failure perfectly
+      black dropped and 57 obs not used
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-75.441129}  
+Iteration 1:{space 3}log likelihood = {res:-73.864588}  
+Iteration 2:{space 3}log likelihood = {res: -73.72963}  
+Iteration 3:{space 3}log likelihood = {res:  -73.7293}  
+Iteration 4:{space 3}log likelihood = {res:  -73.7293}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}       665
+{txt}{col 49}LR chi2({res}2{txt}){col 67}= {res}      3.42
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.1805
+{txt}Log likelihood = {res}  -73.7293{txt}{col 49}Pseudo R2{col 67}= {res}    0.0227
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-1.313936{col 26}{space 2} .7168291{col 37}{space 1}   -1.83{col 46}{space 3}0.067{col 54}{space 4}-2.718895{col 67}{space 3} .0910237
+{txt}{space 7}black {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 4}hispanic {c |}{col 14}{res}{space 2}-.1242246{col 26}{space 2} .6623971{col 37}{space 1}   -0.19{col 46}{space 3}0.851{col 54}{space 4}-1.422499{col 67}{space 3}  1.17405
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 11.06171{col 26}{space 2} 7.877144{col 37}{space 1}    1.40{col 46}{space 3}0.160{col 54}{space 4}-4.377211{col 67}{space 3} 26.50063
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. logit yeardeath logincome black hispanic white
+
+{txt}note: black != 0 predicts failure perfectly
+      black dropped and 57 obs not used
+
+note: white != 0 predicts failure perfectly
+      white dropped and 60 obs not used
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-73.908775}  
+Iteration 1:{space 3}log likelihood = {res:-71.797649}  
+Iteration 2:{space 3}log likelihood = {res:-70.786657}  
+Iteration 3:{space 3}log likelihood = {res:-70.773625}  
+Iteration 4:{space 3}log likelihood = {res:-70.773619}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}       605
+{txt}{col 49}LR chi2({res}2{txt}){col 67}= {res}      6.27
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0435
+{txt}Log likelihood = {res}-70.773619{txt}{col 49}Pseudo R2{col 67}= {res}    0.0424
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-1.575207{col 26}{space 2} .7842147{col 37}{space 1}   -2.01{col 46}{space 3}0.045{col 54}{space 4}-3.112239{col 67}{space 3}-.0381742
+{txt}{space 7}black {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 4}hispanic {c |}{col 14}{res}{space 2} -1.11223{col 26}{space 2} .6676679{col 37}{space 1}   -1.67{col 46}{space 3}0.096{col 54}{space 4}-2.420835{col 67}{space 3} .1963751
+{txt}{space 7}white {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}_cons {c |}{col 14}{res}{space 2}  14.9493{col 26}{space 2}  8.71014{col 37}{space 1}    1.72{col 46}{space 3}0.086{col 54}{space 4}-2.122261{col 67}{space 3} 32.02086
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. logit yeardeath logincome minority
+
+{txt}note: minority != 1 predicts failure perfectly
+      minority dropped and 60 obs not used
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-75.367899}  
+Iteration 1:{space 3}log likelihood = {res:-73.313635}  
+Iteration 2:{space 3}log likelihood = {res: -73.16171}  
+Iteration 3:{space 3}log likelihood = {res: -73.16125}  
+Iteration 4:{space 3}log likelihood = {res: -73.16125}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}       662
+{txt}{col 49}LR chi2({res}1{txt}){col 67}= {res}      4.41
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0357
+{txt}Log likelihood = {res} -73.16125{txt}{col 49}Pseudo R2{col 67}= {res}    0.0293
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-1.607693{col 26}{space 2} .7607548{col 37}{space 1}   -2.11{col 46}{space 3}0.035{col 54}{space 4}-3.098745{col 67}{space 3}-.1166409
+{txt}{space 4}minority {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}_cons {c |}{col 14}{res}{space 2} 14.25099{col 26}{space 2}  8.43481{col 37}{space 1}    1.69{col 46}{space 3}0.091{col 54}{space 4}-2.280933{col 67}{space 3} 30.78291
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. logit yeardeath logincome senior
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-76.772373}  
+Iteration 1:{space 3}log likelihood = {res:-76.002778}  
+Iteration 2:{space 3}log likelihood = {res:-69.162515}  
+Iteration 3:{space 3}log likelihood = {res:-69.137344}  
+Iteration 4:{space 3}log likelihood = {res:-69.137322}  
+Iteration 5:{space 3}log likelihood = {res:-69.137322}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}       722
+{txt}{col 49}LR chi2({res}2{txt}){col 67}= {res}     15.27
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0005
+{txt}Log likelihood = {res}-69.137322{txt}{col 49}Pseudo R2{col 67}= {res}    0.0995
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-1.251599{col 26}{space 2} .6783879{col 37}{space 1}   -1.84{col 46}{space 3}0.065{col 54}{space 4}-2.581215{col 67}{space 3} .0780169
+{txt}{space 6}senior {c |}{col 14}{res}{space 2} 1.789826{col 26}{space 2} .5164407{col 37}{space 1}    3.47{col 46}{space 3}0.001{col 54}{space 4} .7776206{col 67}{space 3} 2.802031
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 9.564163{col 26}{space 2} 7.541671{col 37}{space 1}    1.27{col 46}{space 3}0.205{col 54}{space 4} -5.21724{col 67}{space 3} 24.34557
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. regress yeardeath logincome senior minority
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(3, 718)       = {res}     7.24
+{txt}       Model {c |} {res} .459422065         3  .153140688   {txt}Prob > F        ={res}    0.0001
+{txt}    Residual {c |} {res} 15.1860073       718  .021150428   {txt}R-squared       ={res}    0.0294
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0253
+{txt}       Total {c |} {res} 15.6454294       721  .021699625   {txt}Root MSE        =   {res} .14543
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-.0305451{col 26}{space 2} .0156751{col 37}{space 1}   -1.95{col 46}{space 3}0.052{col 54}{space 4}-.0613196{col 67}{space 3} .0002294
+{txt}{space 6}senior {c |}{col 14}{res}{space 2} .0563886{col 26}{space 2} .0140466{col 37}{space 1}    4.01{col 46}{space 3}0.000{col 54}{space 4} .0288113{col 67}{space 3} .0839658
+{txt}{space 4}minority {c |}{col 14}{res}{space 2} .0248798{col 26}{space 2} .0196099{col 37}{space 1}    1.27{col 46}{space 3}0.205{col 54}{space 4}-.0136199{col 67}{space 3} .0633795
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .3326007{col 26}{space 2} .1770523{col 37}{space 1}    1.88{col 46}{space 3}0.061{col 54}{space 4}-.0150013{col 67}{space 3} .6802028
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress death60 logincome senior asian hispanic black
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(5, 716)       = {res}     3.23
+{txt}       Model {c |} {res} .043944578         5  .008788916   {txt}Prob > F        ={res}    0.0069
+{txt}    Residual {c |} {res} 1.95051526       716  .002724183   {txt}R-squared       ={res}    0.0220
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0152
+{txt}       Total {c |} {res} 1.99445983       721  .002766241   {txt}Root MSE        =   {res} .05219
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     death60{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2} .0007701{col 26}{space 2} .0056734{col 37}{space 1}    0.14{col 46}{space 3}0.892{col 54}{space 4}-.0103685{col 67}{space 3} .0119086
+{txt}{space 6}senior {c |}{col 14}{res}{space 2} .0152593{col 26}{space 2} .0050418{col 37}{space 1}    3.03{col 46}{space 3}0.003{col 54}{space 4} .0053609{col 67}{space 3} .0251577
+{txt}{space 7}asian {c |}{col 14}{res}{space 2} .0227587{col 26}{space 2} .0103595{col 37}{space 1}    2.20{col 46}{space 3}0.028{col 54}{space 4}   .00242{col 67}{space 3} .0430974
+{txt}{space 4}hispanic {c |}{col 14}{res}{space 2} .0017735{col 26}{space 2} .0070895{col 37}{space 1}    0.25{col 46}{space 3}0.803{col 54}{space 4}-.0121451{col 67}{space 3} .0156921
+{txt}{space 7}black {c |}{col 14}{res}{space 2} .0002562{col 26}{space 2} .0097033{col 37}{space 1}    0.03{col 46}{space 3}0.979{col 54}{space 4}-.0187942{col 67}{space 3} .0193065
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.0114431{col 26}{space 2} .0640741{col 37}{space 1}   -0.18{col 46}{space 3}0.858{col 54}{space 4}-.1372387{col 67}{space 3} .1143524
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress death60 logincome age minority
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(3, 718)       = {res}     1.90
+{txt}       Model {c |} {res} .015698378         3  .005232793   {txt}Prob > F        ={res}    0.1284
+{txt}    Residual {c |} {res} 1.97876146       718  .002755935   {txt}R-squared       ={res}    0.0079
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0037
+{txt}       Total {c |} {res} 1.99445983       721  .002766241   {txt}Root MSE        =   {res}  .0525
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     death60{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2} .0007507{col 26}{space 2} .0056667{col 37}{space 1}    0.13{col 46}{space 3}0.895{col 54}{space 4}-.0103746{col 67}{space 3} .0118761
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0001995{col 26}{space 2}  .000085{col 37}{space 1}    2.35{col 46}{space 3}0.019{col 54}{space 4} .0000327{col 67}{space 3} .0003663
+{txt}{space 4}minority {c |}{col 14}{res}{space 2} .0026217{col 26}{space 2} .0070807{col 37}{space 1}    0.37{col 46}{space 3}0.711{col 54}{space 4}-.0112797{col 67}{space 3} .0165231
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.0162062{col 26}{space 2} .0642566{col 37}{space 1}   -0.25{col 46}{space 3}0.801{col 54}{space 4}-.1423595{col 67}{space 3} .1099472
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. logit yeardeath logincome minority
+
+{txt}note: minority != 1 predicts failure perfectly
+      minority dropped and 60 obs not used
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-75.367899}  
+Iteration 1:{space 3}log likelihood = {res:-73.313635}  
+Iteration 2:{space 3}log likelihood = {res: -73.16171}  
+Iteration 3:{space 3}log likelihood = {res: -73.16125}  
+Iteration 4:{space 3}log likelihood = {res: -73.16125}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}       662
+{txt}{col 49}LR chi2({res}1{txt}){col 67}= {res}      4.41
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0357
+{txt}Log likelihood = {res} -73.16125{txt}{col 49}Pseudo R2{col 67}= {res}    0.0293
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-1.607693{col 26}{space 2} .7607548{col 37}{space 1}   -2.11{col 46}{space 3}0.035{col 54}{space 4}-3.098745{col 67}{space 3}-.1166409
+{txt}{space 4}minority {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}_cons {c |}{col 14}{res}{space 2} 14.25099{col 26}{space 2}  8.43481{col 37}{space 1}    1.69{col 46}{space 3}0.091{col 54}{space 4}-2.280933{col 67}{space 3} 30.78291
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. tab yeardeath
+
+  {txt}YearDeath {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        969       97.98       97.98
+{txt}          1 {c |}{res}         20        2.02      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        989      100.00
+
+{com}. sum income
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}income {c |}{res}        722    81081.73    27801.62      22956     191744
+
+{com}. regress yeardeath logincome asian senior badbp
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(4, 717)       = {res}     6.39
+{txt}       Model {c |} {res} .538183023         4  .134545756   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 15.1072463       717  .021070079   {txt}R-squared       ={res}    0.0344
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0290
+{txt}       Total {c |} {res} 15.6454294       721  .021699625   {txt}Root MSE        =   {res} .14516
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-.0298317{col 26}{space 2} .0156503{col 37}{space 1}   -1.91{col 46}{space 3}0.057{col 54}{space 4}-.0605577{col 67}{space 3} .0008942
+{txt}{space 7}asian {c |}{col 14}{res}{space 2} .0471163{col 26}{space 2} .0226122{col 37}{space 1}    2.08{col 46}{space 3}0.038{col 54}{space 4} .0027222{col 67}{space 3} .0915104
+{txt}{space 6}senior {c |}{col 14}{res}{space 2} .0576288{col 26}{space 2} .0140883{col 37}{space 1}    4.09{col 46}{space 3}0.000{col 54}{space 4} .0299695{col 67}{space 3} .0852882
+{txt}{space 7}badbp {c |}{col 14}{res}{space 2}-.0099465{col 26}{space 2} .0109732{col 37}{space 1}   -0.91{col 46}{space 3}0.365{col 54}{space 4}-.0314899{col 67}{space 3}  .011597
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .3499427{col 26}{space 2} .1764019{col 37}{space 1}    1.98{col 46}{space 3}0.048{col 54}{space 4} .0036166{col 67}{space 3} .6962687
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. gen badbmi = 1 if bmi>27
+{txt}(486 missing values generated)
+
+{com}. badbmi = 1 if bmi<18
+{err}command {bf}badbmi{sf} is unrecognized
+{txt}{search r(199), local:r(199);}
+
+{com}. replace badbmi=1 if bmi<18
+{txt}(196 real changes made)
+
+{com}. replace badbmi =1 if bmi<19
+{txt}(47 real changes made)
+
+{com}. replace badbmi=0 if bmi>=19 and bmi<=27
+{err}invalid 'and' 
+{txt}{search r(198), local:r(198);}
+
+{com}. replace badbmi=0 if 19>=bmi>=27
+{txt}(0 real changes made)
+
+{com}. tab badbmi
+
+     {txt}badbmi {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        746      100.00      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        746      100.00
+
+{com}. replace badbmi=0 if badbmi!=1
+{txt}(243 real changes made)
+
+{com}. tab badbmi
+
+     {txt}badbmi {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        243       24.57       24.57
+{txt}          1 {c |}{res}        746       75.43      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        989      100.00
+
+{com}. regress yeardeath logincome badbmi senior asian
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       722
+{txt}{hline 13}{c +}{hline 34}   F(4, 717)       = {res}     6.33
+{txt}       Model {c |} {res} .533361773         4  .133340443   {txt}Prob > F        ={res}    0.0001
+{txt}    Residual {c |} {res} 15.1120676       717  .021076803   {txt}R-squared       ={res}    0.0341
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0287
+{txt}       Total {c |} {res} 15.6454294       721  .021699625   {txt}Root MSE        =   {res} .14518
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   yeardeath{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}logincome {c |}{col 14}{res}{space 2}-.0301114{col 26}{space 2} .0156674{col 37}{space 1}   -1.92{col 46}{space 3}0.055{col 54}{space 4}-.0608708{col 67}{space 3}  .000648
+{txt}{space 6}badbmi {c |}{col 14}{res}{space 2} .0097673{col 26}{space 2} .0126878{col 37}{space 1}    0.77{col 46}{space 3}0.442{col 54}{space 4}-.0151425{col 67}{space 3}  .034677
+{txt}{space 6}senior {c |}{col 14}{res}{space 2} .0552914{col 26}{space 2} .0140921{col 37}{space 1}    3.92{col 46}{space 3}0.000{col 54}{space 4} .0276247{col 67}{space 3} .0829581
+{txt}{space 7}asian {c |}{col 14}{res}{space 2} .0476748{col 26}{space 2} .0225968{col 37}{space 1}    2.11{col 46}{space 3}0.035{col 54}{space 4} .0033109{col 67}{space 3} .0920386
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .3404295{col 26}{space 2}  .176163{col 37}{space 1}    1.93{col 46}{space 3}0.054{col 54}{space 4}-.0054275{col 67}{space 3} .6862865
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/afs/athena.mit.edu/user/c/i/cindysi/schmidtAPMData.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 4 Nov 2019, 04:35:51
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

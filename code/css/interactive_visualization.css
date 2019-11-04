@@ -1,0 +1,471 @@
+
+body {
+	--descriptionColor: #BFBFBF;
+}
+
+/****** Header and Legend CSS Info *********/
+#victimTitle{
+	position: absolute;
+	top: 120px;
+    left: 60px;
+	width:100%;
+	padding: 5px;
+	text-align: left;
+	font-weight: 300;
+	font-size: 1.9em;
+	color: var(--descriptionColor);
+}
+
+#messageTitle {
+	position: absolute;
+	top: 750px;
+	left: 65px;
+	width: 100%;
+	padding: 5px;
+	text-align: left;
+	font-weight: 300;
+	font-size: .75em;
+	color: darkgray;
+	font-family: Avenir, "Serif";
+}
+
+#titleText{
+	font-size:.9em;
+    left: 95px;
+	text-align: left;
+}
+#buttonText{
+	margin-top: 4px;
+	font-family: Avenir, "Serif";
+	text-align: center;
+	font-weight: 300;
+    font-size: 1.07em;
+}
+
+#quizTitle {
+	position: absolute;
+	font-family: Lora, "Serif";
+	top: 125px;
+	width: 100%;
+	text-align: center;
+	font-weight: 300;
+	font-size: 1.4em;
+	color: var(--descriptionColor);
+}
+
+#learnTitle {
+	position: absolute;
+	top: 75px;
+	width: 100%;
+	font-size: 1.1em;
+	color: #f0ad4e;
+	text-align: center;
+	font-family: Lora;
+}
+
+#nameText {
+	position: absolute;
+	top: 460px;
+	font-family: Avenir;
+	left: 390px;
+}
+#base {
+	color: white;
+	position: absolute;
+	top: 200px;
+	width: 100%;
+	font-family: Avenir, "Serif";
+	text-align: center;
+	font-weight: 300;
+	font-size: .9em;
+	color: var(--descriptionColor);
+}
+
+#base.hidden {
+	display: none
+}
+ul {
+	list-style-type:none;
+	padding: 0;
+	font-family: Avenir, "Serif";
+}
+
+li{
+	display: block;
+	float: bottom;
+}
+
+li p{
+	display:inline-block;
+	padding-top: 3px;
+	padding-bottom: 15px;
+	padding-left: 0;
+	padding-right: 0;
+	text-align: center;
+	color: white;
+}
+
+#legends{
+	font-family: Avenir, "Serif";
+	color: #ffffff;
+	position: absolute;
+	top: 250px;
+	left: 1180px;
+	padding:5px;
+	font-size: .9em;
+	font-weight: 300;
+	display: inline;
+}
+
+#legends2 {
+	font-family: Avenir, "Serif";
+	position: absolute;
+	top: 245px;
+	left: 1220px;
+	padding: 5px;
+	font-size: .9em;
+	font-weight: 300;
+	display: inline;
+}
+.legendRect{
+	display:inline-block;
+	padding-bottom: 4px;
+	width: 11px;
+	height: 11px;
+	background-color: #000000;
+}
+
+
+/******* CSS Styling of Buttons to sort and color data ********/
+/******* Buttons that sort the data *********/
+
+.button{
+	color: #ffffff;
+	background-color: #333333;
+	position: absolute;
+	width: 120px;
+	z-index: 100;
+	font-size: 0.7em;
+	top: 180px;
+	text-align: center;
+	border-radius: 100px;
+	height: 23px;
+	/*display: -webkit-flex;*/
+	/*display: flex;*/
+	/*align-items: center;*/
+	cursor:pointer;
+}
+.color{
+    left: 26px;
+}
+
+#colorTitle{
+	/*width:450px;*/
+	/*top:85px;*/
+    left: 70px;
+	top: 180px;
+}
+#colorAge{
+    left: 140px;
+}
+#colorDescription{
+    left: 270px;
+}
+#colorGender{
+    left: 400px;
+}
+#colorIncome{
+    left: 140px;
+	top: 210px;
+}
+#colorMortality{
+    left: 270px;
+	top: 210px;
+}
+#colorRace{
+    left: 400px;
+	top: 210px;
+}
+
+/*Buttons to color the data */
+.sort{
+	right: 1px;
+
+}
+#sortTitle{
+	/*width:450px;*/
+	/*top: 85px;*/
+    left: 665px;
+	top: 180px;
+}
+#sortAge{
+    left: 715px;
+}
+#sortDescription{
+    left: 845px;
+}
+#sortGender{
+    left: 975px;
+}
+#sortIncome{
+	top: 210px;
+    left: 715px;
+}
+#sortMortality{
+	top: 210px;
+    left: 845px;
+}
+#sortRace{
+	top: 210px;
+	left: 975px;
+
+}
+
+
+#sortAll {
+	left: 455px;
+}
+
+#sortTop {
+	left: 585px;
+}
+
+#sortBottom {
+	left: 715px;
+}
+
+#sortTopGDP {
+	left: 845px;
+}
+
+#sortBottomGDP {
+	left: 975px;
+}
+.quiz {
+	color: white;
+	right: 3px;
+	width: 150px;
+	height: 25px;
+	font-family: Lora, "Serif";
+	border-color: #ffffff;
+}
+
+.quiz:hover {
+	background-color: darkgrey;
+	color: white;
+}
+
+#choice1 {
+	color: white;
+	top: 325px;
+	left: 350px;
+	border-color: #ffffff;
+}
+
+#choice2 {
+	top: 325px;
+	left: 550px;
+}
+
+#choice3 {
+	top: 325px;
+	left: 750px;
+}
+
+#choice4 {
+	top: 325px;
+	left: 950px;
+}
+
+/* Styling our timeline */
+.timeline {
+	position: absolute;
+	color: #ffffff;
+	/*bottom: 28px;*/
+	top: 720px;
+}
+.timeline.hidden {
+	display: none;
+}
+.timelineTick {
+	background-color: #ffffff;
+	position: absolute;
+	width: 1px;
+	height: 8px;
+	/*bottom:60px;*/
+	top: 710px;
+}
+.timelineTick.hidden{
+	display: none;
+}
+#timelineText {
+	color: white;
+	font-size:0.7em;
+	text-align: center;
+	font-weight: 300;
+}
+
+#answerHeader {
+	position: absolute;
+	font-family: Lora, "Serif";
+	top: 400px;
+	width: 100%;
+	text-align: center;
+	font-weight: 300;
+    font-size: 1.4em;
+	color: #f0ad4e;
+}
+
+#answerHeader.hidden {
+	display: none;
+}
+
+#answerText {
+	color: white;
+    font-family: Lora;
+	position: absolute;
+    top: 220px;
+	width: 100%;
+	text-align: center;
+	font-weight: 300;
+    font-size: 1.15em;
+}
+
+#answerText.hidden {
+	display: none
+}
+
+#results {
+	color: white;
+	position: absolute;
+    font-family: Avenir, "Serif";
+    top: 280px;
+	width: 100%;
+	text-align: center;
+	font-weight: 300;
+    font-size: 1em;
+}
+
+#results.hidden {
+	display: none;
+}
+/* Styling of our tooltip that pops out and displays relevant info on selected pixel */
+#tooltip {
+	position: absolute;
+	width: 200px;
+	height: auto;
+	padding: 5px;
+	background-color:#000000;
+	color: #ffffff;
+	-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+}
+
+/*Hide the tooltip when we are not scrolling over data*/
+#tooltip.hidden {
+	display: none;
+}
+
+/*Tooltip paragraph styling*/
+#tooltip p {
+	font-family: Lora, "Serif";
+	margin: 0;
+	font-size: 12px;
+	line-height: 18px;
+	font-weight: 300;
+}
+
+.selectTitle p {
+	position: absolute;
+	top: 60px;
+	left: 1235px;
+	font-family: Lora, "Serif";
+	font-weight: 300;
+	font-size: .7em;
+}
+
+
+
+#loading {
+	position: absolute;
+	top: 50%;
+	left: 45%;
+	width: 50px;
+	height: 50px;
+	font-size: 1em;
+	font-style: italic;
+	text-align: center;
+	font-family: Avenir, "Serif";
+}
+
+#loading.hidden{
+	display: none;
+}
+
+textarea[type=text], select {
+	padding: 8px;
+	display: block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	position: absolute;
+	line-height: -10px;
+	resize: none;
+
+}
+
+#learn {
+	top: 200px;
+	width: 45%;
+	left: 390px;
+	height: 30%;
+	color: black;
+
+}
+
+#name {
+	top: 460px;
+	width: 38%;
+	height: 3%;
+	color: black;
+	left: 490px;
+}
+
+input[type=submit] {
+	background-color: #333333;
+	position: absolute;
+	width: 120px;
+	z-index: 100;
+	font-size: 0.7em;
+	top: 500px;
+	left: 920px;
+	text-align: center;
+	border-radius: 100px;
+	height: 23px;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.chart {
+	position: absolute;
+	left: 300px;
+	top: 220px;
+	width: 900px;
+	background-color: black;
+}
+.column {
+	float: left;
+	width: 50%;
+	padding: 10px;
+	height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
