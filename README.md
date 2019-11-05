@@ -4,13 +4,13 @@ The visualization for this data is located in the Graph tab. Each dot/rectangle 
 
 ## TABS
 --------------------------
-**Data:** Details the data that was provided (Q1)
-**Assumptions:** Reveals important assumptions made in the regressions
-**Analysis:** Regression analysis
-**Program Design:** The 1-year program design
-**Code:** a zip file that contains all the code used for the whole project.
-  Within the code folder, there is a Stata log file (schmidtAPMData.smcl), Jupyter notebooks used to clean the data for Q1 and the graph (Q1.ipynb, Graph.ipynb), and the pdf version of the Q1 Notebook (Q1_Code.pdf).
-  Within the data folder, there are the 11 provided datasets and graph.csv (used to create the graph) and EmergencyVisits.csv (used in the regression).
-  The images folder is holds images used in the site.
+**Data:** Details the data that was provided (Q1) <br />
+**Assumptions:** Reveals important assumptions made in the regressions<br />
+**Analysis:** Regression analysis<br />
+**Program Design:** The 1-year program design<br />
+**Code:** a zip file that contains all the code used for the whole project.<br />
+  Within the code folder, there is a Stata log file (schmidtAPMData.smcl), Jupyter notebooks used to clean the data for Q1 and the graph (Q1.ipynb, Graph.ipynb), and the pdf version of the Q1 Notebook (Q1_Code.pdf).<br />
+  Within the data folder, there are the 11 provided datasets and graph.csv (used to create the graph) and EmergencyVisits.csv (used in the regression).<br />
+  The images folder is holds images used in the site.<br />
   
 I hope this makes grading the challenge more enjoyable than reading a PDF and the visualization makes the data more accessible/approachable. Thank you for your time :)
